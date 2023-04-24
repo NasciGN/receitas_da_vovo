@@ -1,6 +1,9 @@
+// ignore_for_file: file_names
+
 import 'package:flutter/material.dart';
-import 'package:receitas_da_vovo/views/constants.dart';
+import 'package:receitas_da_vovo/views/components/constants.dart';
 import 'package:receitas_da_vovo/models/receita.dart';
+import 'package:receitas_da_vovo/views/detailPage.dart';
 
 class CardReceita extends StatelessWidget {
   const CardReceita({
@@ -15,7 +18,10 @@ class CardReceita extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.of(context).pushNamed('/detail');
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => DetailPage(receita: receita)));
       },
       child: Container(
         margin: EdgeInsets.only(

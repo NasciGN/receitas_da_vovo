@@ -66,6 +66,10 @@ flutter:
      - assets\images\torta_de_frango.jpg
      - assets\images\pastel_de_frango.jpg
      - assets\images\coxinha_de_carne.jpg
+     - assets\images\bolo_cenoura.jpg
+     - assets\images\vatapa.jpg
+     - assets\images\sushi.jpeg
+     - assets\images\sashimi.jpg
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

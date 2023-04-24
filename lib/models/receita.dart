@@ -1,5 +1,3 @@
-import 'package:flutter/material.dart';
-
 class Receitas {
   final String nome;
   final String descricao;
@@ -8,6 +6,7 @@ class Receitas {
   final String tempoPreparo;
   final String urlReceita;
   final String dificuldade;
+  final String nacionalidade;
 
   Receitas({
     required this.nome,
@@ -17,5 +16,6 @@ class Receitas {
     required this.tempoPreparo,
     required this.urlReceita,
     required this.dificuldade,
+    required this.nacionalidade,
   });
 }
