@@ -37,34 +37,38 @@ class _HomeScreenState extends State<HomeScreen> {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
         appBar: const PreferredSize(
-          preferredSize: Size.fromHeight(kToolbarHeight),
-          child: MyHomeAppBar(pageName: 'Home'),
+          preferredSize: Size.fromHeight(60),
+          child: MyHomeAppBar(
+            pageName: 'Home',
+          ),
         ),
-        body: Column(children: <Widget>[
-          Container(
-            height: size.height * .02,
-            decoration: const BoxDecoration(
-                color: fbackground,
-                borderRadius: BorderRadius.only(
-                    bottomLeft: Radius.circular(50),
-                    bottomRight: Radius.circular(50))),
-          ),
-          SingleChildScrollView(
-            scrollDirection: Axis.vertical,
-            child: Column(mainAxisSize: MainAxisSize.max, children: <Widget>[
-              SectionRecipesWithFourCards(
-                size: size,
-                listCards: cardsNew,
-                sectionTitle: 'Novas Receitas',
-              ),
-              SectionRecipesWithFourCards(
-                size: size,
-                listCards: cardsPopular,
-                sectionTitle: 'Receitas populares',
-              ),
-            ]),
-          ),
-        ]),
+        body: SingleChildScrollView(
+          child: Column(children: <Widget>[
+            /* Container(
+              height: size.height * .02,
+              decoration: const BoxDecoration(
+                  color: fbackground,
+                  borderRadius: BorderRadius.only(
+                      bottomLeft: Radius.circular(50),
+                      bottomRight: Radius.circular(50))),
+            ), */
+            SingleChildScrollView(
+              scrollDirection: Axis.vertical,
+              child: Column(mainAxisSize: MainAxisSize.max, children: <Widget>[
+                SectionRecipesWithFourCards(
+                  size: size,
+                  listCards: cardsNew,
+                  sectionTitle: 'Novas Receitas',
+                ),
+                SectionRecipesWithFourCards(
+                  size: size,
+                  listCards: cardsPopular,
+                  sectionTitle: 'Receitas populares',
+                ),
+              ]),
+            ),
+          ]),
+        ),
         bottomNavigationBar: const BottomBarWithFourItens());
   }
 }

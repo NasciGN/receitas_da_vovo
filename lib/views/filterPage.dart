@@ -27,16 +27,16 @@ class FilterRecipesPage extends StatelessWidget {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: myAppBar('Receitas'),
-      body: Column(
-        children: [
-          SingleChildScrollView(
-            child: SectionRecipesFilter(
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            SectionRecipesFilter(
                 recipeType: recipesType,
                 sectionTitle: 'Culinária $recipesType',
                 listCards: filterCards,
-                size: size),
-          )
-        ],
+                size: size)
+          ],
+        ),
       ),
       // bottomNavigationBar: const BottomBarWithFourItens(),
     );

@@ -53,11 +53,11 @@ class SectionRecipesFilter extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: defaultpd),
       child: Column(
         children: [
-          SectionTextWithIconButtom(texto: sectionTitle),
+          SectionText(texto: sectionTitle),
           SizedBox(
-            height: size.height * 0.45,
+            height: size.height,
             child: GridView.builder(
-              physics: const NeverScrollableScrollPhysics(),
+              //physics: const NeverScrollableScrollPhysics(),
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2),
               scrollDirection: Axis.vertical,
@@ -107,6 +107,33 @@ class SectionRecipesWithFourCards extends StatelessWidget {
           ),
         ],
       ),
+    );
+  }
+}
+
+class SectionText extends StatelessWidget {
+  const SectionText({
+    required this.texto,
+    super.key,
+  });
+  final String texto;
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+        Text(
+          texto,
+          style:
+              const TextStyle(color: fontcolorblack, fontSize: sessionsfonsize),
+        ),
+        //const Spacer(),
+        IconButton(
+            onPressed: () {},
+            icon: const Icon(
+              Icons.soup_kitchen_sharp,
+              color: fontcolor,
+            ))
+      ],
     );
   }
 }

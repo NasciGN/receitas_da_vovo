@@ -9,48 +9,65 @@ class MyHomeAppBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AppBar(
-      elevation: 0,
-      backgroundColor: fbackground,
-      leading: IconButton(
-          padding: const EdgeInsets.all(defaultpd),
-          onPressed: () {},
-          icon: const Icon(
-            Icons.menu,
-            color: fontcolor,
-          )),
-      title: Text(
-        pageName,
-        style: const TextStyle(color: fontcolor),
+    return Container(
+      height: 250,
+      decoration: const BoxDecoration(
+        color: fbackground,
+        borderRadius: BorderRadius.only(
+          bottomLeft: Radius.circular(20),
+          bottomRight: Radius.circular(20),
+        ),
       ),
-      centerTitle: true,
-      actions: [
-        PopupMenuButton(
-            onSelected: (String value) {
-              Navigator.of(context)
-                  .pushNamed('/filterRecipe', arguments: value);
-            },
-            icon: const Icon(
-              Icons.book,
-              color: fontcolor,
-            ),
-            itemBuilder: (BuildContext context) {
-              return const [
-                PopupMenuItem(
-                    value: 'brasileira', child: Text('Receitas Brasileiras')),
-                PopupMenuItem(
-                    value: 'mexicana', child: Text('Receitas Mexicanas')),
-                PopupMenuItem(
-                    value: 'japonesa', child: Text('Receitas Japonesas')),
-              ];
-            })
-      ],
+      child: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: defaultpd),
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              IconButton(
+                onPressed: () {},
+                icon: const Icon(Icons.menu),
+                color: fontcolor,
+              ),
+              Text(
+                pageName,
+                style: const TextStyle(
+                    color: fontcolor,
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold),
+              ),
+              PopupMenuButton(
+                  onSelected: (String value) {
+                    Navigator.of(context)
+                        .pushNamed('/filterRecipe', arguments: value);
+                  },
+                  icon: const Icon(
+                    Icons.book,
+                    color: fontcolor,
+                  ),
+                  itemBuilder: (BuildContext context) {
+                    return const [
+                      PopupMenuItem(
+                          value: 'brasileira',
+                          child: Text('Receitas Brasileiras')),
+                      PopupMenuItem(
+                          value: 'mexicana', child: Text('Receitas Mexicanas')),
+                      PopupMenuItem(
+                          value: 'japonesa', child: Text('Receitas Japonesas')),
+                    ];
+                  })
+            ],
+          ),
+        ),
+      ),
     );
   }
 }
 
 AppBar myAppBar(String pageName) {
   return AppBar(
+    iconTheme: const IconThemeData(color: fontcolor),
     elevation: 0,
     backgroundColor: fbackground,
     title: Text(
@@ -62,8 +79,7 @@ AppBar myAppBar(String pageName) {
       IconButton(
           onPressed: () {},
           icon: const Icon(
-            Icons.notifications,
-            color: fontcolor,
+            Icons.share_sharp,
           ))
     ],
   );
