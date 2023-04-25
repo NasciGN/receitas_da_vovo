@@ -6,13 +6,10 @@ import 'package:receitas_da_vovo/models/receita.dart';
 import 'package:receitas_da_vovo/views/detailPage.dart';
 
 class CardReceita extends StatelessWidget {
-  const CardReceita({
-    super.key,
-    required this.size,
-    required this.receita,
-  });
-  final Size size;
+  const CardReceita(
+      {super.key, required this.receita, required this.cardFontSize});
   final Receitas receita;
+  final double cardFontSize;
 
   @override
   Widget build(BuildContext context) {
@@ -24,12 +21,6 @@ class CardReceita extends StatelessWidget {
                 builder: (context) => DetailPage(receita: receita)));
       },
       child: Container(
-        margin: EdgeInsets.only(
-          right: size.width * 0.05,
-          bottom: size.height * 0.015,
-        ),
-        height: size.height * 0.20,
-        width: size.width * 0.4,
         decoration: BoxDecoration(
             borderRadius: const BorderRadius.all(Radius.circular(20)),
             image: DecorationImage(
@@ -55,7 +46,6 @@ class CardReceita extends StatelessWidget {
           ),
           Container(
             padding: const EdgeInsets.symmetric(horizontal: defaultpd / 2),
-            height: size.height * 0.05,
             decoration: const BoxDecoration(
               boxShadow: [
                 BoxShadow(
@@ -69,17 +59,23 @@ class CardReceita extends StatelessWidget {
               ),
               color: Colors.white,
             ),
-            child: Row(
-              children: <Widget>[
-                RichText(
-                    text: TextSpan(children: [
-                  TextSpan(
-                      text: receita.nome,
-                      style: const TextStyle(
-                        color: Color.fromARGB(255, 46, 45, 45),
-                      )),
-                ]))
-              ],
+            child: AspectRatio(
+              aspectRatio: 5 / 1,
+              child: Row(
+                children: <Widget>[
+                  Expanded(
+                    child: RichText(
+                        text: TextSpan(children: [
+                      TextSpan(
+                          text: receita.nome,
+                          style: TextStyle(
+                            fontSize: cardFontSize,
+                            color: const Color.fromARGB(255, 46, 45, 45),
+                          )),
+                    ])),
+                  )
+                ],
+              ),
             ),
           )
         ]),

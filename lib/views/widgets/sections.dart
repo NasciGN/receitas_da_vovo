@@ -41,53 +41,39 @@ class BottomBarWithFourItens extends StatelessWidget {
 
 class SectionRecipesFilter extends StatelessWidget {
   const SectionRecipesFilter(
-      {super.key,
-      required this.recipeType,
-      required this.sectionTitle,
-      required this.listCards,
-      required this.size});
+      {super.key, required this.recipeType, required this.listCards});
+
   final String recipeType;
-  final Size size;
-  final String sectionTitle;
   final List<Receitas> listCards;
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: defaultpd),
-      child: Column(
-        children: [
-          SectionText(texto: sectionTitle),
-          SizedBox(
-            height: size.height,
-            child: GridView.builder(
-              //physics: const NeverScrollableScrollPhysics(),
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2),
-              scrollDirection: Axis.vertical,
-              itemCount: listCards.length,
-              itemBuilder: (BuildContext context, int i) {
-                if (listCards[i].nacionalidade == recipeType) {
-                  return CardReceita(size: size, receita: listCards[i]);
-                }
-              },
-            ),
-          ),
-        ],
-      ),
+    return GridView.builder(
+      //physics: const NeverScrollableScrollPhysics(),
+      gridDelegate:
+          const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
+      scrollDirection: Axis.vertical,
+      itemCount: listCards.length,
+      itemBuilder: (BuildContext context, int i) {
+        return Padding(
+          padding: const EdgeInsets.all(defaultpd / 3),
+          child: CardReceita(cardFontSize: 15, receita: listCards[i]),
+        );
+      },
     );
   }
 }
 
 class SectionRecipesWithFourCards extends StatelessWidget {
-  const SectionRecipesWithFourCards(
-      {super.key,
-      required this.size,
-      required this.listCards,
-      required this.sectionTitle});
+  const SectionRecipesWithFourCards({
+    super.key,
+    required this.listCards,
+    required this.sectionTitle,
+    required this.cardFontSize,
+  });
 
   final String sectionTitle;
   final List<Receitas> listCards;
-  final Size size;
+  final double cardFontSize;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -95,15 +81,19 @@ class SectionRecipesWithFourCards extends StatelessWidget {
       child: Column(
         children: [
           SectionTextWithIconButtom(texto: sectionTitle),
-          SizedBox(
-            height: size.height - (size.height * 0.50),
+          AspectRatio(
+            aspectRatio: 1 / 1,
             child: GridView.builder(
               physics: const NeverScrollableScrollPhysics(),
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2),
               itemCount: 4,
               itemBuilder: (BuildContext context, int i) {
-                return CardReceita(size: size, receita: listCards[i]);
+                return Padding(
+                  padding: const EdgeInsets.all(defaultpd / 3),
+                  child: CardReceita(
+                      cardFontSize: cardFontSize, receita: listCards[i]),
+                );
               },
             ),
           ),

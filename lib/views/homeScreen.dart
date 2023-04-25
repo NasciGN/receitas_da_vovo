@@ -31,34 +31,46 @@ class _HomeScreenState extends State<HomeScreen> {
     receita5,
     receita4,
   ];
+
   @override
   Widget build(BuildContext context) {
+    double cardFontSize = 0.0;
     Size size = MediaQuery.of(context).size;
+
+    final bool ismobile = size.width < 600;
+
+    if (ismobile) {
+      cardFontSize = 15;
+    }
+    if (!ismobile) {
+      cardFontSize = 25;
+    }
+
     return Scaffold(
-        appBar: const PreferredSize(
-          preferredSize: Size.fromHeight(60),
+        appBar: PreferredSize(
+          preferredSize: const Size.fromHeight(60),
           child: MyHomeAppBar(
             pageName: 'Home',
+            cardFontSize: cardFontSize,
           ),
         ),
         body: SingleChildScrollView(
-          child: Column(children: <Widget>[
-            SingleChildScrollView(
-              scrollDirection: Axis.vertical,
-              child: Column(mainAxisSize: MainAxisSize.max, children: <Widget>[
+          child: SafeArea(
+            child: Column(children: <Widget>[
+              Column(children: <Widget>[
                 SectionRecipesWithFourCards(
-                  size: size,
+                  cardFontSize: cardFontSize,
                   listCards: cardsNew,
                   sectionTitle: 'Novas Receitas',
                 ),
                 SectionRecipesWithFourCards(
-                  size: size,
+                  cardFontSize: cardFontSize,
                   listCards: cardsPopular,
                   sectionTitle: 'Receitas populares',
                 ),
               ]),
-            ),
-          ]),
+            ]),
+          ),
         ),
         bottomNavigationBar: const BottomBarWithFourItens());
   }

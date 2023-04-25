@@ -4,8 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:receitas_da_vovo/views/components/constants.dart';
 
 class MyHomeAppBar extends StatelessWidget {
-  const MyHomeAppBar({super.key, required this.pageName});
+  const MyHomeAppBar(
+      {super.key, required this.pageName, required this.cardFontSize});
   final String pageName;
+  final double cardFontSize;
 
   @override
   Widget build(BuildContext context) {

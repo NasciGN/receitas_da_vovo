@@ -20,91 +20,167 @@ class DetailPage extends StatelessWidget {
             preferredSize: Size.fromHeight(60),
             child: MyAppBar(pageName: "Receita")),
         body: SingleChildScrollView(
-          child:
-              Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-            Container(
-                padding: const EdgeInsets.symmetric(horizontal: defaultpd),
-                height: size.height * .1,
+          child: SafeArea(
+            child:
+                Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+              Container(
+                  padding: const EdgeInsets.symmetric(horizontal: defaultpd),
+                  height: size.height * .1,
+                  child: Row(
+                    //mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Text(
+                        '${receita.nome}',
+                        style: const TextStyle(
+                            color: Colors.black87,
+                            fontWeight: FontWeight.bold,
+                            fontSize: titlefontsize),
+                      ),
+                      const Spacer(),
+                      const FaIcon(FontAwesomeIcons.utensils)
+                    ],
+                  )),
+              Container(
+                height: size.height * .3,
+                decoration: BoxDecoration(
+                    image: DecorationImage(
+                        image: AssetImage('${receita.urlReceita}'),
+                        fit: BoxFit.cover)),
                 child: Row(
-                  //mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      IconButton(
+                        onPressed: () {},
+                        icon: const FaIcon(FontAwesomeIcons.solidHeart),
+                        color: Colors.white,
+                      ),
+                      IconButton(
+                        onPressed: () {},
+                        icon: const Icon(Icons.share_sharp),
+                        color: Colors.white,
+                      ),
+                      IconButton(
+                        onPressed: () {},
+                        icon: const Icon(Icons.bookmark),
+                        color: Colors.white,
+                      ),
+                    ]),
+              ),
+              SizedBox(
+                height: size.height * .01,
+              ),
+              Container(
+                margin: const EdgeInsets.symmetric(horizontal: defaultpd),
+                padding: const EdgeInsets.symmetric(
+                    vertical: defaultpd / 2, horizontal: defaultpd * 2),
+                decoration: const BoxDecoration(
+                    border: Border(
+                        bottom: BorderSide(
+                            color: Color.fromARGB(255, 158, 158, 158)))),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text(
-                      '${receita.nome}',
-                      style: const TextStyle(
-                          color: Colors.black87,
-                          fontWeight: FontWeight.bold,
-                          fontSize: titlefontsize),
+                    Column(
+                      children: const [
+                        Text(
+                          "3",
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: sessionsfonsize),
+                        ),
+                        Text("Porções"),
+                      ],
                     ),
-                    const Spacer(),
-                    const FaIcon(FontAwesomeIcons.utensils)
+                    Column(
+                      children: [
+                        Row(
+                          crossAxisAlignment: CrossAxisAlignment.end,
+                          children: const [
+                            FaIcon(
+                              FontAwesomeIcons.solidStar,
+                              color: fontcolor,
+                              size: 20,
+                            ),
+                            FaIcon(
+                              FontAwesomeIcons.solidStar,
+                              color: fontcolor,
+                            ),
+                            FaIcon(
+                              FontAwesomeIcons.solidStar,
+                              color: fontcolor,
+                              size: 20,
+                            ),
+                          ],
+                        ),
+                        Text(
+                          "${receita.dificuldade}",
+                          style: const TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: sessionsfonsize),
+                        ),
+                      ],
+                    ),
+                    Column(
+                      children: [
+                        Text(
+                          "${receita.tempoPreparo}",
+                          style: const TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: sessionsfonsize),
+                        ),
+                        const Text("T. de Preparo"),
+                      ],
+                    ),
                   ],
-                )),
-            Container(
-              height: size.height * .3,
-              decoration: BoxDecoration(
-                  image: DecorationImage(
-                      image: AssetImage('${receita.urlReceita}'),
-                      fit: BoxFit.cover)),
-              child:
-                  Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                IconButton(
-                  onPressed: () {},
-                  icon: const FaIcon(FontAwesomeIcons.solidHeart),
-                  color: Colors.white,
                 ),
-                IconButton(
-                  onPressed: () {},
-                  icon: const Icon(Icons.share_sharp),
-                  color: Colors.white,
+              ),
+              const Padding(
+                padding: EdgeInsets.symmetric(
+                    horizontal: defaultpd, vertical: defaultpd),
+                child: Text(
+                  'Ingredientes',
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
                 ),
-                IconButton(
-                  onPressed: () {},
-                  icon: const Icon(Icons.bookmark),
-                  color: Colors.white,
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: defaultpd),
+                child: ListView.builder(
+                    physics: NeverScrollableScrollPhysics(),
+                    shrinkWrap: true,
+                    itemCount: receita.ingredientes.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      return IngredietRow(
+                          ingredient: "${receita.ingredientes[index]}");
+                    }),
+              ),
+              const Padding(
+                padding: EdgeInsets.symmetric(
+                    horizontal: defaultpd, vertical: defaultpd),
+                child: Text(
+                  'Modo de preparo',
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
                 ),
-              ]),
-            ),
-            SizedBox(
-              height: size.height * .01,
-            ),
-            const Padding(
-              padding: EdgeInsets.symmetric(
-                  horizontal: defaultpd, vertical: defaultpd),
-              child: Text(
-                'Ingredientes',
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
               ),
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: defaultpd),
-              child: ListView.builder(
-                  physics: NeverScrollableScrollPhysics(),
-                  shrinkWrap: true,
-                  itemCount: receita.ingredientes.length,
-                  itemBuilder: (BuildContext context, int index) {
-                    return IngredietRow(
-                        ingredient: "${receita.ingredientes[index]}");
-                  }),
-            ),
-            const Padding(
-              padding: EdgeInsets.symmetric(
-                  horizontal: defaultpd, vertical: defaultpd),
-              child: Text(
-                'Modo de preparo',
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+              Padding(
+                padding: const EdgeInsets.symmetric(
+                    horizontal: defaultpd, vertical: defaultpd),
+                child: Text(
+                  receita.modoPreparo,
+                  style: const TextStyle(
+                      fontWeight: FontWeight.bold, letterSpacing: 1),
+                ),
               ),
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(
-                  horizontal: defaultpd, vertical: defaultpd),
-              child: Text(
-                receita.modoPreparo,
-                style: const TextStyle(
-                    fontWeight: FontWeight.bold, letterSpacing: 1),
+              const Padding(
+                padding: EdgeInsets.symmetric(
+                    horizontal: defaultpd, vertical: defaultpd),
+                child: Text(
+                  'Ficou com dúvida? Veja nosso tutorial:',
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+                ),
               ),
-            ),
-          ]),
+            ]),
+          ),
         ),
         bottomNavigationBar: const BottomBarWithFourItens());
   }
