@@ -26,7 +26,9 @@ class FilterRecipesPage extends StatelessWidget {
         cards.where((recipe) => recipe.nacionalidade == recipesType).toList();
     Size size = MediaQuery.of(context).size;
     return Scaffold(
-      appBar: myAppBar('Receitas'),
+      appBar: const PreferredSize(
+          preferredSize: Size.fromHeight(60),
+          child: MyAppBar(pageName: 'Receitas')),
       body: SingleChildScrollView(
         child: Column(
           children: [

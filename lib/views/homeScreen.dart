@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 
 import 'package:receitas_da_vovo/modelviews/receitas.dart';
 import 'package:receitas_da_vovo/models/receita.dart';
-import 'package:receitas_da_vovo/views/components/constants.dart';
 import 'package:receitas_da_vovo/views/widgets/appBar.dart';
 import 'package:receitas_da_vovo/views/widgets/sections.dart';
 
@@ -44,14 +43,6 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
         body: SingleChildScrollView(
           child: Column(children: <Widget>[
-            /* Container(
-              height: size.height * .02,
-              decoration: const BoxDecoration(
-                  color: fbackground,
-                  borderRadius: BorderRadius.only(
-                      bottomLeft: Radius.circular(50),
-                      bottomRight: Radius.circular(50))),
-            ), */
             SingleChildScrollView(
               scrollDirection: Axis.vertical,
               child: Column(mainAxisSize: MainAxisSize.max, children: <Widget>[

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:receitas_da_vovo/views/components/constants.dart';
 import 'package:receitas_da_vovo/models/receita.dart';
 import 'package:receitas_da_vovo/views/components/recipeCard.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class BottomBarWithFourItens extends StatelessWidget {
   const BottomBarWithFourItens({super.key});
@@ -12,23 +13,25 @@ class BottomBarWithFourItens extends StatelessWidget {
       color: fbackground,
       child: Row(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
         IconButton(
-          onPressed: () {},
-          icon: const Icon(Icons.home),
+          onPressed: () {
+            Navigator.of(context).pushReplacementNamed('/home');
+          },
+          icon: const FaIcon(FontAwesomeIcons.house),
           color: fontcolor,
         ),
         IconButton(
           onPressed: () {},
-          icon: const Icon(Icons.food_bank),
+          icon: const FaIcon(FontAwesomeIcons.fire),
           color: fontcolor,
         ),
         IconButton(
           onPressed: () {},
-          icon: const Icon(Icons.menu_book),
+          icon: const FaIcon(FontAwesomeIcons.bookBookmark),
           color: fontcolor,
         ),
         IconButton(
           onPressed: () {},
-          icon: const Icon(Icons.book),
+          icon: const FaIcon(FontAwesomeIcons.cartShopping),
           color: fontcolor,
         ),
       ]),
@@ -93,12 +96,11 @@ class SectionRecipesWithFourCards extends StatelessWidget {
         children: [
           SectionTextWithIconButtom(texto: sectionTitle),
           SizedBox(
-            height: size.height * 0.45,
+            height: size.height - (size.height * 0.50),
             child: GridView.builder(
               physics: const NeverScrollableScrollPhysics(),
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2),
-              scrollDirection: Axis.vertical,
               itemCount: 4,
               itemBuilder: (BuildContext context, int i) {
                 return CardReceita(size: size, receita: listCards[i]);
