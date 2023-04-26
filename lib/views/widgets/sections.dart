@@ -47,10 +47,11 @@ class SectionRecipesFilter extends StatelessWidget {
   final List<Receitas> listCards;
   @override
   Widget build(BuildContext context) {
+    final orientation = MediaQuery.of(context).orientation;
     return GridView.builder(
-      //physics: const NeverScrollableScrollPhysics(),
-      gridDelegate:
-          const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
+      gridDelegate: orientation == Orientation.portrait
+          ? const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2)
+          : const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3),
       scrollDirection: Axis.vertical,
       itemCount: listCards.length,
       itemBuilder: (BuildContext context, int i) {

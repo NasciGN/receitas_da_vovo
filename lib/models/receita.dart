@@ -4,9 +4,11 @@ class Receitas {
   final List ingredientes;
   final String modoPreparo;
   final String tempoPreparo;
+  final String quantPorcoes;
   final String urlReceita;
   final String dificuldade;
   final String nacionalidade;
+  final String url;
 
   Receitas({
     required this.nome,
@@ -14,8 +16,10 @@ class Receitas {
     required this.ingredientes,
     required this.modoPreparo,
     required this.tempoPreparo,
+    required this.quantPorcoes,
     required this.urlReceita,
     required this.dificuldade,
     required this.nacionalidade,
+    required this.url,
   });
 }

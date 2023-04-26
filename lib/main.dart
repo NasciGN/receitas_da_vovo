@@ -6,8 +6,11 @@ import 'package:device_preview/device_preview.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
-  SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp])
-      .then((_) {
+  SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+    DeviceOrientation.landscapeLeft,
+    DeviceOrientation.landscapeRight
+  ]).then((_) {
     runApp(DevicePreview(
         enabled: true,
         builder: (context) => MaterialApp(
